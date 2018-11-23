@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import ES from 'react-native-extended-stylesheet';
+
+import Text from '../components/Text';
 
 export default Main = () => (
     <View style={styles.container}>
-        <Text>Home</Text>
+        <Text style={styles.title}>Home</Text>
     </View>
 )
 
@@ -14,5 +16,10 @@ const styles = ES.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '$colorEggplant',
+    },
+    title: {
+        fontSize: '1.5rem',
+        fontWeight: '500',
+        color: '$colorPurple'
     }
 })

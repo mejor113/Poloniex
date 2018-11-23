@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ES from 'react-native-extended-stylesheet';
 
 import Home from '../home/Main';
-import Rate from '../rate/Main';
+import Rate from '../rate/Main.container';
 
 const TabNavigator = createBottomTabNavigator(
     {
