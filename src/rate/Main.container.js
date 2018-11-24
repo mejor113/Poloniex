@@ -1,23 +1,29 @@
 import React from 'react';
-import { observer, inject } from 'mobx-react/native';
+import {
+    observer,
+    inject
+} from 'mobx-react/native';
 import { withNavigationFocus } from 'react-navigation';
 
 import Main from './Main';
 
-@inject('MainStore')
+
+@inject('RateStore', 'WorkerStore')
 @observer
-class Container extends React.Component{
+class Container extends React.Component {
+
     componentDidMount() {
-        this.props.MainStore.runWorker();
+        this.props.WorkerStore.runWorker();
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.isFocused && this.props.isFocused && !this.props.MainStore.isWorking) return this.props.MainStore.runWorker();
-        if (prevProps.isFocused && !this.props.isFocused && this.props.MainStore.isWorking) return this.props.MainStore.stopWorker();
+        if (!prevProps.isFocused && this.props.isFocused && !this.props.WorkerStore.isWorking) return this.props.WorkerStore.runWorker();
+        if (prevProps.isFocused && !this.props.isFocused && this.props.WorkerStore.isWorking) return this.props.WorkerStore.stopWorker();
     }
 
     render() {
-        const { dataList, isFetching, isFetchRejected } = this.props.MainStore;
+        const { isFetching, isFetchRejected } = this.props.WorkerStore;
+        const { dataList } = this.props.RateStore;
 
         return (
             <Main
@@ -25,7 +31,7 @@ class Container extends React.Component{
                 isFetching={isFetching}
                 isFetchRejected={isFetchRejected}
             />
-        )
+        );
     }
 }
 

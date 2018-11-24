@@ -2,14 +2,16 @@ import React from 'react';
 import {
     FlatList,
     View,
-    ActivityIndicator 
+    ActivityIndicator
 } from 'react-native';
 import ES from 'react-native-extended-stylesheet';
 
 import Row from './Row';
 import Text from '../components/Text';
 
-export default class Main extends React.Component{
+
+export default class Main extends React.Component {
+
     keyExtractor = item => `${item.id}`;
 
     renderHeader = () => {
@@ -19,7 +21,7 @@ export default class Main extends React.Component{
             <View style={styles.errorBlock}>
                 <Text>Error</Text>
             </View>
-        )
+        );
     }
 
     renderItem = ({ item }) => (<Row item={item} />)
@@ -44,7 +46,7 @@ export default class Main extends React.Component{
                 ListHeaderComponent={this.renderHeader}
                 data={dataList}
             />
-        )
+        );
     }
 }
 
@@ -69,4 +71,4 @@ const styles = ES.create({
         alignItems: 'center',
         backgroundColor: '#BF1223'
     },
-})
+});

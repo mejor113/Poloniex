@@ -4,6 +4,7 @@ import ES from 'react-native-extended-stylesheet';
 
 import Text from '../components/Text';
 
+
 export default Main = () => (
     <View style={styles.container}>
         <Text style={styles.title}>Home</Text>
@@ -22,4 +23,4 @@ const styles = ES.create({
         fontWeight: '500',
         color: '$colorPurple'
     }
-})
+});

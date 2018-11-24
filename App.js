@@ -4,11 +4,13 @@ import { Provider } from 'mobx-react';
 import ES from 'react-native-extended-stylesheet';
 
 import styles from './src/common/styles';
-import MainStore from './src/common/store';
 import TabNavigator from './src/common/Navigator';
+import RateStore from './src/common/store/rateStore';
+import WorkerStore from './src/common/store/workerStore';
 
 const stores = {
-    MainStore,
+    RateStore,
+    WorkerStore,
 };
 
 export default class App extends React.Component {

@@ -1,7 +1,11 @@
-import { observable, action } from 'mobx';
+import {
+    observable,
+    action
+} from 'mobx';
 
-//https://poloniex.com/public?command=returnTicker
-//https://api.example1.com/search
+import RateStore from './rateStore';
+
+
 const fetchData = () => new Promise((resolve, reject) => {
     return fetch('https://poloniex.com/public?command=returnTicker').then(
         response => response.json().then(resolve),
@@ -9,14 +13,10 @@ const fetchData = () => new Promise((resolve, reject) => {
     );
 });
 
-class MainStore {
-    @observable list = [];
+class WorkerStore {
+
     @observable fetchStatus = ''; // 'pending', 'rejected'
     @observable isSilenceFetchWorking = false;
-
-    get dataList() {
-        return this.list;
-    }
 
     get isFetchRejected() {
         return this.fetchStatus === 'rejected';
@@ -30,19 +30,22 @@ class MainStore {
         return this.isSilenceFetchWorking;
     }
 
-    @action.bound worker() {
+    @action.bound
+    worker() {
         if (!this.isSilenceFetchWorking) return;
 
         this.loadData()
         setTimeout(() => this.worker(), 5000);
     }
 
-    @action.bound runWorker() {
+    @action.bound
+    runWorker() {
         this.isSilenceFetchWorking = true;
         this.worker();
     }
 
-    @action.bound stopWorker() {
+    @action.bound
+    stopWorker() {
         this.isSilenceFetchWorking = false;
     }
 
@@ -56,8 +59,7 @@ class MainStore {
 
     @action.bound
     fetchFulfilled(data) {
-        console.log(data);
-        this.list = Object.keys(data).map(key => ({...data[key], name: key.replace('_', ' ')}));
+        RateStore.updateListData(data);
         this.fetchStatus = 'fulfilled';
     }
 
@@ -68,4 +70,4 @@ class MainStore {
     }
 }
 
-export default new MainStore();
+export default new WorkerStore();

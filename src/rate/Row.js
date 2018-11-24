@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import {
+    View,
+    TouchableOpacity
+} from 'react-native';
 import ES from 'react-native-extended-stylesheet';
 
 import Text from '../components/Text';
 
-export default class Row extends React.Component{
+
+export default class Row extends React.Component {
+
     renderLastChange = param => {
         const value = Math.round(param * 100) / 100;
         const isPositive = value > 0;
@@ -14,11 +19,12 @@ export default class Row extends React.Component{
             <Text style={[styles.lastChangeText, isSame ? null : { color: isPositive ? '#51F35A' : '#BF1223' }]}>
                 {value}
             </Text>
-        )
+        );
     }
 
     render() {
         const { item } = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={styles.mainRow}>
@@ -27,18 +33,20 @@ export default class Row extends React.Component{
                     </Text>
                     {this.renderLastChange(item.percentChange)}
                 </View>
+
                 <View style={styles.scndRow}>
                     <View style={styles.scndRowItem}>
                         <Text>{item.highestBid}</Text>
                         <Text style={styles.bidDesc}>Top Bid</Text>
                     </View>
+
                     <View style={[styles.scndRowItem, styles.scndRowItemRight]}>
                         <Text>{item.last}</Text>
                         <Text style={styles.bidDesc}>Bid</Text>
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -79,4 +87,4 @@ const styles = ES.create({
     scndRowItemRight: {
         alignItems: 'flex-end'
     }
-})
+});

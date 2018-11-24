@@ -1,10 +1,15 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer, BottomTabBar } from 'react-navigation';
+import {
+    createBottomTabNavigator,
+    createAppContainer,
+    BottomTabBar
+} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ES from 'react-native-extended-stylesheet';
 
 import Home from '../home/Main';
 import Rate from '../rate/Main.container';
+
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -22,7 +27,13 @@ const TabNavigator = createBottomTabNavigator(
                   iconName = 'th-list';
                 }
 
-                return <Icon name={iconName} size={ES.value('2rem')} color={tintColor} />;
+                return (
+                    <Icon
+                        name={iconName}
+                        size={ES.value('2rem')}
+                        color={tintColor}
+                    />
+                );
             },
             tabBarComponent: props => (
                 <BottomTabBar
